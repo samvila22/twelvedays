@@ -53,3 +53,31 @@ test_that(inputting_characters, {
   location <- "at the assistant"
   expect_equal( returns : "six flappers flapping indepedently at the assistant")
 })
+
+test_check("sing_day")
+
+context("singing the song with all days descriptions at a certain line")
+
+test_that("running inputs that are incorrect", {
+
+  expect_error( make_phrase(xmas, "4", Full.Phrase) )
+
+})
+#returns object error for the 4, must be an integer
+
+test_that(inputting_characters, {
+
+  dataset <- xmas
+  line <- 4
+  phrase_col <- Full.Phrase
+  expect_equal( returns : "On the fourth day of Christmas, my true love sent to me,
+four birds calling, three hens french, two turtle doves
+and a partridge in a pear tree.")
+
+  dataset <- xmas
+  line <- 3
+  phrase_col <- Full.Phrase
+  expect_equal( returns : "On the third day of Christmas, my true love sent to me,
+three hens french, two turtle doves
+and a partridge in a pear tree.")
+})

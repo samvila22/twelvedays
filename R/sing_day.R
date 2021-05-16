@@ -15,9 +15,22 @@
 #' @export
 sing_day <- function(dataset, line, phrase_col){
 
-  phrases <- dataset %>% pull({{phrase_col}})
+  return_str <- function(x) {
+    return(x)
+  }
+  phrases <- dataset %>%
+    filter(Day <= line) %>%
+    pull({{phrase_col}})
+  phrase <- map_chr(phrases, return_str) %>%
+    cat(sep = "and")
+  #map over phrase col in dataset line amount of times
+  f_line <- dataset %>%
+    filter(Day == line) %>%
+    select(Day.In.Words)
+  f_phrase <- glue("On the {f_line} day of Christmas, my true love sent to me: {phrase}")
 
-  #????
+
+  return(f_phrase)
 
 
 }
